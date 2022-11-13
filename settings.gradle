@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Musically"
 include ':app'
+include ':designsystem'
+include ':features'
+include ':network'
+include ':common'

@@ -9,7 +9,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.abhinav.musically.Details.ARG_ARTIST_ID
+import com.abhinav.musically.common.navigation.Details
+import com.abhinav.musically.common.navigation.Details.ARG_ARTIST_ID
+import com.abhinav.musically.common.navigation.Home
 import com.abhinav.musically.features.details.DetailsScreen
 import com.abhinav.musically.features.details.DetailsViewModel
 import com.abhinav.musically.features.details.DetailsViewModelImpl

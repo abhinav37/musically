@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Musically</string>
+    <string name="all">All</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="created">Created:</string>
+    <string name="ended">Ended:</string>
+    <string name="image">Image</string>
+    <string name="download_image">Download image</string>
+    <string name="back">Back</string>
+    <string name="musically">Musically</string>
+    <string name="description">Type: %s</string>
+    <string name="clear">clear</string>
+    <string name="no_results_found">No results found. Please retry with a different keyword</string>
+    <string name="search_by_keyword">Search your favorite artists</string>
+    <string name="unknown">Unknown</string>
+    <string name="reload_from_server">Load from Server</string>
+    <string name="ongoing">Ongoing</string>
+    <string name="release_date">Release Date: %s</string>
+    <string name="albums_by_artist">Albums</string>
+    <string name="no_albums_found">No albums found</string>
+</resources>

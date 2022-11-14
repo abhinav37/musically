@@ -28,8 +28,6 @@ import com.abhinav.musically.designsystem.getPlaceholderImage
 import com.abhinav.musically.designsystem.theme.DSColors
 import com.abhinav.musically.designsystem.theme.DSTypography
 import com.valentinilk.shimmer.Shimmer
-import com.valentinilk.shimmer.ShimmerBounds
-import com.valentinilk.shimmer.rememberShimmer
 import com.valentinilk.shimmer.shimmer
 
 // Reuseable Components
@@ -83,7 +81,7 @@ fun ArtistContent(
     Column(modifier = modifier) {
         Text(
             text = artistName,
-            style = DSTypography.headline,
+            style = DSTypography.body1Medium,
             color = DSColors.primaryText,
             modifier = Modifier.fillMaxWidth()
         )
@@ -128,9 +126,9 @@ fun ArtistContent(
                     color = DSColors.primaryText,
                 )
             }
-            Column(modifier = Modifier.padding(start = 8.dp)) {
+            Column(modifier = Modifier.padding(start = 4.dp)) {
                 Text(
-                    text = artistLifeSpanStart ?: stringResource(id = R.string.unknown),
+                    text = artistLifeSpanStart,
                     style = DSTypography.body2Regular,
                     color = DSColors.primaryText,
                     modifier = Modifier.padding(bottom = 8.dp)
@@ -146,25 +144,24 @@ fun ArtistContent(
 }
 
 @Composable
-fun LoadingArtistContentWithThumbnail(modifier: Modifier = Modifier) {
-    val shimmerInstance = rememberShimmer(shimmerBounds = ShimmerBounds.Window)
+fun LoadingArtistContentWithThumbnail(shimmer: Shimmer, modifier: Modifier = Modifier) {
     Row(modifier = modifier
         .padding(vertical = 12.dp, horizontal = 16.dp)
         .fillMaxWidth()) {
         Box(
             modifier = Modifier
                 .size(48.dp)
-                .shimmer(shimmerInstance)
+                .shimmer(shimmer)
                 .background(DSColors.primaryForegroundText)
         )
-        LoadingArtistContent()
+        LoadingArtistContent(shimmer = shimmer)
     }
 }
 
 @Composable
 fun LoadingArtistContent(
+    shimmer: Shimmer,
     modifier: Modifier = Modifier,
-    shimmerInstance: Shimmer = rememberShimmer(shimmerBounds = ShimmerBounds.Window),
 ) {
     Column(modifier = modifier.padding(start = 12.dp, end = 16.dp)) {
         Box(
@@ -172,7 +169,7 @@ fun LoadingArtistContent(
                 .width(96.dp)
                 .height(20.dp)
                 .padding(bottom = 2.dp)
-                .shimmer(shimmerInstance)
+                .shimmer(shimmer)
                 .background(DSColors.primaryForegroundText)
         )
 
@@ -181,7 +178,7 @@ fun LoadingArtistContent(
                 .fillMaxWidth()
                 .height(28.dp)
                 .padding(bottom = 8.dp)
-                .shimmer(shimmerInstance)
+                .shimmer(shimmer)
                 .background(DSColors.primaryForegroundText)
         )
         Row {
@@ -223,7 +220,7 @@ fun LoadingArtistContent(
                         .fillMaxWidth()
                         .height(20.dp)
                         .padding(bottom = 0.dp)
-                        .shimmer(shimmerInstance)
+                        .shimmer(shimmer)
                         .background(DSColors.primaryForegroundText)
                 )
                 Box(
@@ -231,7 +228,7 @@ fun LoadingArtistContent(
                         .fillMaxWidth()
                         .height(28.dp)
                         .padding(top = 8.dp)
-                        .shimmer(shimmerInstance)
+                        .shimmer(shimmer)
                         .background(DSColors.primaryForegroundText)
                 )
             }
@@ -241,6 +238,6 @@ fun LoadingArtistContent(
 
 @Preview
 @Composable
-fun artistPreview() {
+fun ArtistPreview() {
     ArtistContentWithThumbnail()
 }

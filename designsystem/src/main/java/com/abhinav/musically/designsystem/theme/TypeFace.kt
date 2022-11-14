@@ -32,7 +32,7 @@ val DSTypography = MusicallyTypography(
         fontFamily = Roboto,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp,
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.Bold,
         fontSize = 16.sp,
     ), body1Regular = TextStyle(
         fontFamily = Roboto,
@@ -50,6 +50,6 @@ val DSTypography = MusicallyTypography(
         fontFamily = Roboto,
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
     ))

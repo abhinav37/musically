@@ -16,12 +16,14 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -29,7 +31,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.abhinav.musically.features.R
 import com.abhinav.musically.designsystem.components.AlbumContent
 import com.abhinav.musically.designsystem.components.ArtistContent
 import com.abhinav.musically.designsystem.components.BasicButton
@@ -39,6 +40,7 @@ import com.abhinav.musically.designsystem.getArtistImageUrl
 import com.abhinav.musically.designsystem.getPlaceholderImage
 import com.abhinav.musically.designsystem.theme.DSColors
 import com.abhinav.musically.designsystem.theme.DSTypography
+import com.abhinav.musically.features.R
 import com.abhinav.musically.features.ScreenState.EMPTY
 import com.abhinav.musically.features.ScreenState.ERROR
 import com.abhinav.musically.features.ScreenState.LOADING
@@ -53,21 +55,26 @@ import com.valentinilk.shimmer.shimmer
 fun DetailsScreen(onBackClick: () -> Unit, viewModel: DetailsViewModel) {
     val state by viewModel.state.collectAsState()
     Scaffold(topBar = {
-        Row(modifier = Modifier.padding(16.dp)) {
-            IconButton(onClick = onBackClick, modifier = Modifier.size(24.dp)) {
-                Icon(
-                    Icons.Rounded.ArrowBack,
-                    contentDescription = stringResource(R.string.back),
-                    tint = DSColors.primaryText)
+        Surface(elevation = 4.dp, color = DSColors.primaryBackground) {
+            Row(modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
+            ) {
+                IconButton(onClick = onBackClick, modifier = Modifier.size(24.dp)) {
+                    Icon(
+                        Icons.Rounded.ArrowBack,
+                        contentDescription = stringResource(R.string.back),
+                        tint = DSColors.primaryText)
+                }
+                Text(
+                    modifier = Modifier.padding(start = 16.dp),
+                    text = stringResource(id = R.string.details_title, state.artist.name ?: ""),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    style = DSTypography.headline,
+                    color = DSColors.primaryText
+                )
             }
-            Text(
-                modifier = Modifier.padding(start = 20.dp),
-                text = stringResource(id = R.string.details_title, state.artist.name ?: ""),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                style = DSTypography.body1Medium,
-                color = DSColors.primaryText
-            )
         }
     }, bottomBar = {
         if (state.screenState == ERROR) {
@@ -121,7 +128,7 @@ fun DetailScreenWithData(artist: Artist, modifier: Modifier = Modifier) {
             artistLifeSpanEnd = artist.lifeSpan?.end ?: stringResource(id = R.string.ongoing),
         )
         AlbumListContent(
-            modifier = Modifier.padding(vertical = 24.dp, horizontal = 16.dp),
+            modifier = Modifier.padding(top = 24.dp, start = 16.dp, end = 16.dp),
             albums = artist.albums,
         )
     }
@@ -129,19 +136,21 @@ fun DetailScreenWithData(artist: Artist, modifier: Modifier = Modifier) {
 
 @Composable
 fun DetailScreenLoading(modifier: Modifier = Modifier) {
-    val shimmerInstance = rememberShimmer(shimmerBounds = ShimmerBounds.Window)
+    val shimmer = rememberShimmer(shimmerBounds = ShimmerBounds.Window)
     Column(modifier = modifier) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(100.dp)
-                .shimmer(shimmerInstance)
+                .shimmer(shimmer)
                 .background(DSColors.primaryForegroundText)
         )
         LoadingArtistContent(
+            shimmer = shimmer,
             modifier = Modifier.padding(vertical = 24.dp),
         )
         LoadingAlbumListContent(
+            shimmer = shimmer,
             modifier = Modifier.padding(vertical = 24.dp, horizontal = 16.dp),
         )
     }

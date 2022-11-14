@@ -25,6 +25,7 @@ import com.abhinav.musically.designsystem.R
 import com.abhinav.musically.designsystem.getAlbumImageUrl
 import com.abhinav.musically.designsystem.theme.DSColors
 import com.abhinav.musically.designsystem.theme.DSTypography
+import com.valentinilk.shimmer.Shimmer
 import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.rememberShimmer
 import com.valentinilk.shimmer.shimmer
@@ -67,11 +68,11 @@ fun AlbumContent(
 @Composable
 fun LoadingAlbumContent(modifier: Modifier = Modifier) {
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        val shimmerInstance = rememberShimmer(shimmerBounds = ShimmerBounds.Window)
+        val shimmer = rememberShimmer(shimmerBounds = ShimmerBounds.Window)
         Box(
             modifier = Modifier
                 .size(48.dp)
-                .shimmer(shimmerInstance)
+                .shimmer(shimmer)
                 .background(DSColors.primaryForegroundText)
         )
         Column(modifier = Modifier.padding(vertical = 12.dp, horizontal = 16.dp)) {
@@ -80,7 +81,7 @@ fun LoadingAlbumContent(modifier: Modifier = Modifier) {
                     .width(96.dp)
                     .height(20.dp)
                     .padding(bottom = 2.dp)
-                    .shimmer(shimmerInstance)
+                    .shimmer(shimmer)
                     .background(DSColors.primaryForegroundText)
             )
 
@@ -89,7 +90,7 @@ fun LoadingAlbumContent(modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .height(28.dp)
                     .padding(bottom = 8.dp)
-                    .shimmer(shimmerInstance)
+                    .shimmer(shimmer)
                     .background(DSColors.primaryForegroundText)
             )
         }
@@ -109,7 +110,11 @@ private fun PreviewAlbumListContent(count: Int = 4) {
 
 @Preview
 @Composable
-fun LoadingAlbumListContent(modifier: Modifier = Modifier, count: Int = 2) {
+fun LoadingAlbumListContent(
+    modifier: Modifier = Modifier,
+    shimmer: Shimmer = rememberShimmer(shimmerBounds = ShimmerBounds.Window),
+    count: Int = 2,
+) {
     val items = List(count) { it }
     LazyColumn(modifier) {
         item {

@@ -15,6 +15,8 @@ data class MusicallyColor(
     val secondary: Color,
     val primaryText: Color,
     val secondaryText: Color,
+    val primaryBackground: Color,
+    val secondaryBackground: Color,
     val buttonText: Color,
     val primaryForegroundText: Color,
     val border: Color,
@@ -27,8 +29,10 @@ val DSColors = MusicallyColor(
     secondary = Color(0XFF706D6B),
     primaryText = Color(0XFF0C0C14),
     secondaryText = Color(0XFF706D6B),
+    primaryBackground = Color(0XFFFFFFFF),
+    secondaryBackground = Color(0XFFAAAAAA),
     buttonText = Color(0XFFFFFFFF),
     primaryForegroundText = Color(0XFF727680),
-    border = Color(0XFFEAE7E4),
-    onBackground = Color(0XFFEAE7E4)
+    border = Color(0xFF565657),
+    onBackground = Color(0xFFF0F0F0)
 )

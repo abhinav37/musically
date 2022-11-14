@@ -48,7 +48,7 @@ fun SearchInput(
 
     Surface(
         modifier = modifier.onFocusChanged { isFocused = it.isFocused },
-        shape = RoundedCornerShape(2.dp),
+        shape = RoundedCornerShape(16.dp),
         color = DSColors.onBackground,
         border = BorderStroke(2.dp, DSColors.border)
     ) {

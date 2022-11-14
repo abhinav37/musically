@@ -6,10 +6,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ArtistListResponse(
-    @SerializedName("created") var created: String? = null,
-    @SerializedName("count") var count: Int? = null,
-    @SerializedName("offset") var offset: Int? = null,
-    @SerializedName("artists") var artists: ArrayList<Artist> = arrayListOf(),
+    @SerializedName("created") val created: String? = null,
+    @SerializedName("count") val count: Int? = null,
+    @SerializedName("offset") val offset: Int? = null,
+    @SerializedName("artists") val artists: ArrayList<Artist> = arrayListOf(),
 )
 
 @Serializable
